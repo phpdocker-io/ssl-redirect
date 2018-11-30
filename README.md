@@ -11,7 +11,7 @@ How you accomplish this will vary from place to place. For instance, my use case
   * Kubernetes
   * Kong docker (not kong-ingress)
 
-I have a `LoadBalancer` service pushing traffic into Kong from the outside world. Kong's deployment contains one pod with two containers: Kong (responding on SSL only) and SSL Redirect (responding on HTTP).
+I have a `LoadBalancer` service pushing traffic into Kong from the outside world. Kong's deployment contains one pod with two containers: Kong and SSL Redirect. The `LoadBalancer` service simply binds its port 80 to wherever you configure SSL redirect to.
 
 ## Whyyyyy
 I made this little container to get around Kong's inability to upgrade HTTP connections to HTTPS - there are third party plugins for this, but since I run Kong in Kubernetes there's no easy way to add these plugins without needing to re-build the containers and publish them to a container registry.
